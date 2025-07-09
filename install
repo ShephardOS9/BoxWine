@@ -45,8 +45,8 @@ fi
 INSTALL_WOW64=0
 
 echo "Select an option"
-echo "1) Install boxwine with box86
-echo "2) Install boxwine with wow64
+echo "1) Install boxwine with box86 build
+echo "2) Install boxwine with wow64 build
 echo ""
 echo -n "Selected number: "
 read i
