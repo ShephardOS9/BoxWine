@@ -15,7 +15,7 @@
 curl -s -o ~/x https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/install && . ~/x
 ```
 
-3. Type `BoxWine` in termux.
+3. Type `boxwine` in termux.
 
 # Configuration
 ## Wine
