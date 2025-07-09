@@ -1,8 +1,8 @@
-![logo](docs/img/logo.png "logo")
+
 
 English
 &nbsp;&nbsp;| &nbsp;&nbsp;
-<a href="https://github.com/olegos2/mobox/blob/main/README-ru.md">Русский</a>
+<a href="https://github.com/olegos2/mobox/blob/main/README-ru.md">Русский/a>
 &nbsp;&nbsp;| &nbsp;&nbsp;
 <a href="https://github.com/olegos2/mobox/blob/main/README-ua.md">Українська</a>
 &nbsp;&nbsp;| &nbsp;&nbsp;
@@ -29,7 +29,7 @@ English
 2. Open termux and paste command
 
 ```bash
-curl -s -o ~/x https://raw.githubusercontent.com/olegos2/mobox/main/install && . ~/x
+curl -s -o ~/x https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/install && . ~/x
 ```
 
 3. Type `BoxWine` in termux.
