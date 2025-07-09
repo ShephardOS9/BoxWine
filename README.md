@@ -18,7 +18,7 @@ English
 
 ##
 
-`Mobox` is a project designed to run windows x86 applications in [Termux](https://github.com/termux/termux-app) using [Box64](https://github.com/ptitSeb/box64) and [Wine](https://www.winehq.org/).
+`BoxWine` is a project designed to run windows x86 applications in [Termux](https://github.com/termux/termux-app) using [Box64](https://github.com/ptitSeb/box64) and [Wine](https://www.winehq.org/). And using XFCE4
 
 # Installation
 1. Install
@@ -32,7 +32,7 @@ English
 curl -s -o ~/x https://raw.githubusercontent.com/olegos2/mobox/main/install && . ~/x
 ```
 
-3. Type `mobox` in termux.
+3. Type `BoxWine` in termux.
 
 # Configuration
 ## Wine
@@ -61,7 +61,7 @@ If you have root, then you can use OOM Adjuster which is useful if low memory ki
 ## Controls
 For touch controls Input Bridge app is required
 ## Uninstall
-To uninstall mobox, use `Backup and restore` menu.
+To uninstall BoxWine, use `Backup and restore` menu.
 ## Debugging
 To enable logging - select option 2 in Mobox -> Settings -> Debug settings menu. Path to the log is /sdcard/mobox_log.txt
 
@@ -69,7 +69,7 @@ To enable logging - select option 2 in Mobox -> Settings -> Debug settings menu.
 ### Android
 * `Android 10` or higher is recommended.
 ### Device
-* Most Android cellphones can run `mobox` and DirectX 9 games using Mesa VirGL.
+* Most Android cellphones can run `BoxWine` and DirectX 9 games using Mesa VirGL.
 * Snapdragon device with Adreno 6xx or Adreno 725-740 is recommended to achieve best performance and compatibility with Turnip+DXVK.
 ### Root
 * Root is not required.
@@ -81,14 +81,6 @@ rm -rf $PREFIX/glibc/opt/termux-style
 ```
 * Some devices may have prefix creation freeze issues when installing PhysX, in this case change settings in `Compatibility settings` menu
 * For SD845 device, disable dri3 in `Compatibility settings` menu
-
-## Support mobox
-[boosty](https://boosty.to/olegos/donate)
-
-#
-Big thanks to Hugo, JeezDisReez, ptitSeb, MishkaKolos, Xanzo, Jotaros, Maxython and others for help.
-
-[MishkaKolos Discord](https://discord.gg/ZAQnZzbCXq)
 
 
 ## Third party applications
