@@ -6,7 +6,7 @@
 # Installation
 1. Install
 [Termux](https://f-droid.org/repo/com.termux_118.apk),
-[Termux-X11](https://raw.githubusercontent.com/olegos2/mobox/main/components/termux-x11.apk) and
+[Termux-X11](https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/Components/termux-x11.apk) and
 [Input Bridge](https://raw.githubusercontent.com/olegos2/mobox/main/components/inputbridge.apk).
 
 2. Open termux and paste command
