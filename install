@@ -9,7 +9,6 @@ while [ ! -d ~/storage/shared ]; do
 done
 clear
 
-# --- Установка всех нужных пакетов в ОДНОМ месте (порядок сохранён) ---
 echo -e "\e[36m[+] Installing all required packages...\e[0m"
 pkg install root-repo -y
 pkg update -y
@@ -55,7 +54,6 @@ echo -e "\e[32m[✓] All packages installed successfully.\e[0m"
 sleep 2
 clear
 
-# --- Удаление старой glibc если есть ---
 if [ -e $PREFIX/glibc ]; then
     echo -n "Removing previous glibc. Continue? (Y/n) "
     read i
@@ -66,10 +64,9 @@ if [ -e $PREFIX/glibc ]; then
     fi
 fi
 
-# --- Установка BoxWine ---
 echo "Select build:"
-echo "1) BoxWine + Box86"
-echo "2) BoxWine + Wow64"
+echo "1) Box86"
+echo "2) WoW64"
 read -p "Selected number: " choice
 
 case "$choice" in
