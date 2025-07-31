@@ -1,7 +1,7 @@
 
 ## About project
 
-`BoxWine` is a project designed to run windows x86 applications in [Termux](https://github.com/termux/termux-app) using [Box64](https://github.com/ptitSeb/box64) and [Wine](https://www.winehq.org/). And using XFCE4
+`BoxWine` is a project designed to run Windows x86 applications in [Termux](https://github.com/termux/termux-app) using [Box64](https://github.com/ptitSeb/box64) and [Wine](https://www.winehq.org/).
 
 # Installation
 1. Install
