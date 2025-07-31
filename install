@@ -7,9 +7,9 @@ echo "Install Box86 version."
 echo "Install WoW64 version."
 read -p "Выбор: " choice
 
-if [ "$choice" = "1"]; then
+if [  "$choice" = "1"]; then
 curl -L https://githubuscontent.com/ShephardOS9/BoxWine/main/wow64.sh
  fi
-if [ "$choice" = "1"]; then
+if [ "$choice" = "1" ]; then
 curl -L https://githubuscontent.com/ShephardOS9/BoxWine/main/box86.sh
  fi
