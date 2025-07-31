@@ -1,15 +1,16 @@
 #!/bin/bash
 clear
-rm ~/x
+rm -f ~/x
 
 sleep 1
-echo "Install Box86 version."
-echo "Install WoW64 version."
+echo "1) Install Box86 version"
+echo "2) Install WoW64 version"
 read -p "Выбор: " choice
 
-if [  "$choice" = "1"]; then
-curl -L https://githubuscontent.com/ShephardOS9/BoxWine/main/wow64.sh
- fi
 if [ "$choice" = "1" ]; then
-curl -L https://githubuscontent.com/ShephardOS9/BoxWine/main/box86.sh
- fi
+  curl -L https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/box86.sh | bash
+fi
+
+if [ "$choice" = "2" ]; then
+  curl -L https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/wow64.sh | bash
+fi
