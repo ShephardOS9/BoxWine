@@ -1,20 +1,22 @@
 #!/bin/bash
 clear
-echo "Installing termux-am"
-pkg install termux-am -y &>/dev/null
+echo "Installing termux-am..."
+sleep 2
+pkg install termux-am -y
 
-termux-setup-storage & sleep 4 &>/dev/null
+termux-setup-storage
 
 while true; do
     if [ -d ~/storage/shared ]; then
         break
     else
-        echo "Storage permission denied"
+        echo "Storage permission denied."
     fi
     sleep 3
 done
 
 echo "Installing termux packages"
+sleep 3
 apt-get clean
 apt-get update
 apt-get -y 
@@ -40,3 +42,7 @@ if [ -e $PREFIX/glibc ]; then
         return 1
     fi
 fi
+
+echo "Installing WoW64 version..."
+sleep 3
+
