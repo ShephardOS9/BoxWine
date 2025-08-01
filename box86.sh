@@ -80,6 +80,7 @@ sleep 3
 echo "Installing Box86 version..."
 sleep 3
 wget -q --show-progress -O box86.tar.xz https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box86.tar.xz
+tar -xvzf box86.tar.xz -C data/data/com.termux/files
 
 fi
     sleep 3
