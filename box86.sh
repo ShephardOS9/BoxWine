@@ -79,17 +79,9 @@ sleep 3
 
 echo "Installing Box86 version..."
 sleep 3
-wget -q --show-progress -O /data/data/com.termux/files/usr/glibc.box86.tar.xz https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box86.tar.xz
-    sleep 2
-    echo "Excracting Box86 build..."
-    tar -xf /data/data/com.termux/files/usr/box86.tar.xz -C /data/data/com.termux/files/usr/
-    cp /data/data/com.termux/files/usr/glibc/opt/scripts/boxvidra /data/data/com.termux/files/usr/bin
-    cp /data/data/com.termux/files/usr/glibc/opt/scripts/wine /data/data/com.termux/files/usr/bin
-    chmod +x /data/data/com.termux/files/usr/glibc/opt/scripts/*
-    chmod 777 /data/data/com.termux/files/usr/bin/boxwine
-    chmod 777 /data/data/com.termux/files/usr/bin/boxwine
-    rm /data/data/com.termux/files/usr/box86.tar.xz
-    
+wget -q --show-progress -O box86.tar.xz https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box86.tar.xz
+
+fi
     sleep 3
     echo "BoxWine Box86 build Installed."
 
