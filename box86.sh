@@ -77,7 +77,7 @@ wget -q --show-progress -O $HOME/turnip.tar.xz https://github.com/ShephardOS9/re
 tar -xf $HOME/turnip.tar.xz
 
 wget -q --show-progress -O $HOME/virgl-mesa.tar.xz https://github.com/ShephardOS9/releases/download/Box86/virgl-mesa.tar.xz
-tar -xf $HOME/virgl-mesa.tar.xx
+tar -xf $HOME/virgl-mesa.tar.xz
 
 wget -q --show-progress -O $HOME/wine-ge-custom-8-25.tar.xz https://github.com/ShephardOS9/releases/download/Box86/wine-ge-custom-8-25.tar.xz
 tar -xf $HOME/wine-ge-custom-8-25.tar.xz
