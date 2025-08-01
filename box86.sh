@@ -45,12 +45,16 @@ pkg install vlc -y
 pkg install vlc-qt -y
 pkg install abiword -y
 
-if [ -e $PREFIX/glibc ]; then
-    echo -n "Removing previous glibc. Continue? (Y/n) "
+if [ -e "$PREFIX/glibc" ]; then
+    echo -e "\e[33m[i] Existing Glibc installation found at: $PREFIX/glibc\e[0m"
+    echo -n "Do you want to remove it before continuing? (Y/n) "
     read i
     if [ "$i" = "Y" ] || [ "$i" = "y" ]; then
-        rm -rf $PREFIX/glibc
+        echo -e "\e[31m[-] Removing old Glibc...\e[0m"
+        rm -rf "$PREFIX/glibc"
+        echo -e "\e[32m[✓] Glibc removed successfully.\e[0m"
     else
+        echo -e "\e[34m[•] Installation canceled by user.\e[0m"
         return 1
     fi
 fi
