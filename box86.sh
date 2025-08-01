@@ -46,8 +46,6 @@ fi
 echo "Installing WoW64 version..."
 sleep 3
 
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box64-binaries.tar.xz
 
-wget -q --show-progress https://github.com/ShephardOS/BoxWine/realeases/download/Box86/dxvk.tar.xz
-
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/realeases/download/Box86/en-ru-locate.tar.xz
+wget -q --show-progress -O /data/data/com.termux/files/usr/glibc.box86.tar.xz https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box64-binaries.tar.xz
+tar -xf 
