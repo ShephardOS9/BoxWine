@@ -68,7 +68,8 @@ wget -q --show-progress -O /data/data/com.termux/files/usr/glibc.box86.tar.xz ht
     chmod 777 /data/data/com.termux/files/usr/bin/boxwine
     chmod 777 /data/data/com.termux/files/usr/bin/boxwine
     rm /data/data/com.termux/files/usr/box86.tar.xz
-
+    
+    sleep 3
     echo "BoxWine Box86 build Installed."
 
 
