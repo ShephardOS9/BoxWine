@@ -18,30 +18,47 @@ done
 echo "Installing termux packages"
 sleep 3
 
+echo "Installing: root-repo, wget, git"
 pkg install root-repo -y
-pkg install wget
+pkg install wget -y
 pkg install git -y
+
+echo "Installing: hashdeep, x11-repo, termux-am"
 pkg install hashdeep -y
-pkg install x11-repo
+pkg install x11-repo -y
 pkg install termux-am -y
+
+echo "Installing: wget, root-repo, x11-repo"
 pkg install wget -y
 pkg install root-repo -y
 pkg install x11-repo -y
+
+echo "Installing: termux-x11-nightly, tur-repo, xwayland"
 pkg install termux-x11-nightly -y
 pkg install tur-repo -y
 pkg install xwayland -y
+
+echo "Installing: xorg-xrandr, p7zip, patchelf"
 pkg install xorg-xrandr -y
 pkg install p7zip -y
 pkg install patchelf -y
+
+echo "Installing: ncurses-utils, hashdeep, mesa-zink virglrenderer-mesa-zink vulkan-loader-android virglrenderer-android"
 pkg install ncurses-utils -y
 pkg install hashdeep -y
 pkg install mesa-zink virglrenderer-mesa-zink vulkan-loader-android virglrenderer-android -y
+
+echo "Installing: python-tkinter, xfce4, gimp"
 pkg install python-tkinter -y
 pkg install xfce4 -y
 pkg install gimp -y
+
+echo "Installing: mpv, firefox, vlc"
 pkg install mpv -y
 pkg install firefox -y
 pkg install vlc -y
+
+echo "Installing: vlc-qt, abiword"
 pkg install vlc-qt -y
 pkg install abiword -y
 
