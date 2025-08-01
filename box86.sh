@@ -75,4 +75,13 @@ wget -q --show-progress -0 /data/data/com.termux/files/usr/scripts.tar.xz https:
 tar -xvzf $HOME/scripts.tar.xz -C $PREFIX
 
 wget -q --show-progress -0 /data/data/com.termux/files/usr/turnip.tar.xz https://github.com/ShephardOS9/releases/download/Box86/turnip.tar.xz
-tar -xvzf $HOME/turnip.tar.zz -C $PREFIX
+tar -xvzf $HOME/turnip.tar.xz -C $PREFIX
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/virgl-mesa.tar.xz https://github.com/ShephardOS9/releases/download/Box86/virgl-mesa.tar.xz
+tar -xvzf $HOME/virgl-mesa.tar.xz -C $PREFIX
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/wine-ge-custom-8-25.tar.xz https://github.com/ShephardOS9/releases/download/Box86/wine-ge-custom-8-25.tar.xz
+tar -xvzf $HOME/wine-ge-custom-8-25.tar.xz
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/wined3d.tar.xz https://github.com/ShephardOS9/releases/download/Box86/wined3d.tar.xz
+tar -xvzf $HOME/wined3d.tar.xz -C $PREFIX
