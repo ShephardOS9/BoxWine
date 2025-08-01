@@ -46,6 +46,45 @@ fi
 echo "Installing WoW64 version..."
 sleep 3
 
+wget -q --show-progress -O $HOME/box64-binaries.tar.xz https://github.com/ShephardOS9/releases/download/Box86/box64-binaries.tar.xz
+tar -xf $HOME/box64-binaries.tar.xz -C $PREFIX
+
+wget -q --show-progress -O $HOME/dxvk.tar.xz https://github.com/ShephardOS9/releases/download/Box86/dxvk.tar.xz
+tar -xf $HOME/dxvk.tar.xz -C $PREFIX
+
+wget -q --show-progress -O $HOME/en-ru-locate.tar.xz https://github.com/ShephardOS9/releases/download/Box86/en-ru-locate.tar.xz
+tar -xf $HOME/en-ru-locate.tar.xz
+
+wget -q --show-progress -O $HOME/glibc-prefix.tar.xz https://github.com/ShephardOS9/releases/download/Box86/glibc-prefix.tar.xz
+tar -xf $HOME/glibc-prefix.tar.xz
+
+wget -q --show-progress -O $HOME/glibc_package_manager.tar.xz https://github.com/ShephardOS9/releases/download/Box86/glibc_package_manager.tar.xz
+tar -xf $HOME/glibc_package_manager.tar.xz
+
+wget -q --show-progress -O $HOME/libudev.tar.xz https://github.com/ShephardOS9/releases/download/Box86/libudev.tar.xz
+tar -xf $HOME/libudev.tar.xz
+
+wget -q --show-progress -O $HOME/package-manager https://github.com/ShephardOS9/releases/download/Box86/package-manager
+tar -xf $HOME/package-manager
+
+wget -q --show-progress -O $HOME/prefix-apps.tar.xz https://github.com/ShephardOS9/releases/download/Box86/prefix-apps.tar.xz
+tar -xf $HOME/prefix-apps.tar.xz
+
+wget -q --show-progress -O $HOME/scripts.tar.xz https://github.com/ShephardOS9/releases/download/Box86/scripts.tar.xz
+tar -xf $HOME/scripts.tar.xz
+
+wget -q --show-progress -O $HOME/turnip.tar.xz https://github.com/ShephardOS9/releases/download/Box86/turnip.tar.xz
+tar -xf $HOME/turnip.tar.xz
+
+wget -q --show-progress -O $HOME/virgl-mesa.tar.xz https://github.com/ShephardOS9/releases/download/Box86/virgl-mesa.tar.xz
+tar -xf $HOME/virgl-mesa.tar.xx
+
+wget -q --show-progress -O $HOME/wine-ge-custom-8-25.tar.xz https://github.com/ShephardOS9/releases/download/Box86/wine-ge-custom-8-25.tar.xz
+tar -xf $HOME/wine-ge-custom-8-25.tar.xz
+
+wget -q --show-progress -O $HOME/wined3d.tar.xz https://github.com/ShephardOS9/releases/download/Box86/wined3d.tar.xz
+tar -xf $HOME/wined3d.tar.xz
+
 fi
 . $PREFIX/glibc/opt/package-manager/package-manager
 sync-all
