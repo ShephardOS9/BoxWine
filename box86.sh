@@ -46,3 +46,6 @@ fi
 echo "Installing WoW64 version..."
 sleep 3
 
+wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box64-binaries.tar.xz
+
+wget -q --show-progress https://github.com/ShephardOS/BoxWine/realeases/download/Box86/
