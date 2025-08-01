@@ -85,3 +85,16 @@ tar -xvzf $HOME/wine-ge-custom-8-25.tar.xz
 
 wget -q --show-progress -0 /data/data/com.termux/files/usr/wined3d.tar.xz https://github.com/ShephardOS9/releases/download/Box86/wined3d.tar.xz
 tar -xvzf $HOME/wined3d.tar.xz -C $PREFIX
+
+fi
+. $PREFIX/glibc/opt/package-manager/package-manager
+sync-all
+
+if [ "$INSTALL_WOW64" = "1" ]; then
+sync-package wine-9.3-vanilla-wow64
+else
+sync-package wine-ge-custom-8-25
+fi
+
+ln -sf $PREFIX/glibc/opt/scripts/boxwine $PREFIX/bin/boxwine
+echo "To start - type \"boxwine\""
