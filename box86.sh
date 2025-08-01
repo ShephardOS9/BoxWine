@@ -59,4 +59,19 @@ tar -xvzf $HOME/en-ru-locate.tar.xz -C $PREFIX
 wget -q --show-progress -0 /data/data/com.termux/files/usr/glibc-prefix.tar.xz https://github.com/ShephardOS9/BoxWine/realeases/download/Box86/glibc-prefix.tar.xz
 tar -xvzf $HOME/glibc-prefix.tar.xz -C $PREFIX
 
+wget -q --show-progress -0 /data/data/com.termux/files/usr/glibc_package_manager.tar.gz https://github.com/ShephardOS9/BoxWine/realeases/download/Box86/glibc_package_manager.tar.gz
+tar -xvzf $HOME/glibc_package_manager.tar.gz -C $PREFIX
 
+wget -q --show-progress -0 /data/data/com.termux/files/usr/libudev.tar.xz https://github.com/ShephardOS9/BoxWine/realeases/donwload/Box86/libudev.tar.xz
+tar -xvzf $HOME/libudev.tar.xz -C $PREFIX
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/package-manager https://github.com/ShephardOS9/realeases/download/Box86/package-manager
+tar -xvzf $HOME/package-manager -C $PREFIX
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/prefix-apps.tar.xz https://github.com/ShephardOS9/realeases/download/Box86/prefix-apps.tar.xz
+tar -xvzf $HOME/prefix-apps.tar.xz -C $PREFIX
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/scripts.tar.xz https://github.com/ShephardOS9/realeases/download/Box86/scripts.tar.xz
+tar -xvzf $HOME/scripts.tar.xz -C $PREFIX
+
+wget -q --show-progress -0 /data/data/com.termux/files/usr/turnip.tar.xz https://github.com/ShephardOS9/realeases/download/Box86/turnip.tar.xz
