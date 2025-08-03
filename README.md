@@ -1,3 +1,4 @@
+![logo](docs/img/boxwine_logo.png "logo")
 
 ## BoxWine Social Media:
 [![YouTube](https://img.shields.io/badge/YouTube-BoxWineProject-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@boxwineproject)  
