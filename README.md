@@ -1,3 +1,7 @@
+p align="center">
+	<img src="boxwine_logo.png" width="256" height="246" />
+</p>
+
 ## BoxWine Social Media:
 [![YouTube](https://img.shields.io/badge/YouTube-BoxWineProject-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@boxwineproject)  
 [![Discord](https://img.shields.io/badge/Discord-Join-blue?style=for-the-badge&logo=discord)](https://discord.gg/n4kTSMpP)  
