@@ -1,3 +1,8 @@
+## BoxWine Social Media:
+[![YouTube](https://img.shields.io/badge/YouTube-BoxWineProject-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/@boxwineproject)  
+[![Discord](https://img.shields.io/badge/Discord-Join-blue?style=for-the-badge&logo=discord)](https://discord.gg/n4kTSMpP)  
+[![Telegram](https://img.shields.io/badge/Telegram-Chat-blue?style=for-the-badge&logo=telegram)](https://t.me/boxwine_project_official)  
+
 
 ## About project
 
