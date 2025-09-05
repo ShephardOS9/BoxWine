@@ -3,6 +3,9 @@ clear
 echo "Installing emulator, and scripts for emulator..."
 sleep 3
 
+wget https://github.com/ShephardOS9/BoxWine/raw/main/scripts.zip -O $PREFIX/scripts.zip
+unzip -o $PREFIX/scripts.zip -d $PREFIX
+
 wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box86-box64-binaries.tar.xz
 tar -xvf box86-box64-binaries.tar.xz -C "$HOME"
 
