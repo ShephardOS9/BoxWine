@@ -1,0 +1,45 @@
+#!bin/bash
+clear
+echo "Installing emulator..."
+sleep 3
+
+apt-get clean
+apt-get update
+apt-get -y
+
+pkg install tsu -y
+pkg install x11-repo -y
+pkg install termux-repo -y
+pkg install x11 -y
+pkg install xwayland -y
+pkg install wget -y
+pkg install handsheep -y
+pkg install patchelf -y
+pkg install p7zip -y 
+pkg install xorg-xrandr -y
+pkg install termux-x11-nightly -y
+pkg install root-repo
+
+if [ -e $PREFIX/glibc ]; then
+    echo -n "Removing previous glibc. Continue? (Y/n) "
+    read i
+    if [ "$i" = "Y" ] || [ "$i" = "y" ]; then
+        rm -rf $PREFIX/glibc
+    else
+        return 1
+    fi
+fi
+INSTALL_WOW64=0
+
+sleep 1
+echo "1) Install Box86 version"
+echo "2) Install WoW64 version"
+read -p "Выбор: " choice
+
+if [ "$choice" = "1" ]; then
+  curl -L https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/box86.sh | bash
+fi
+
+if [ "$choice" = "2" ]; then
+  curl -L https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/wow64.sh | bash
+fi
