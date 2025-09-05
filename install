@@ -19,6 +19,7 @@ pkg install p7zip -y
 pkg install xorg-xrandr -y
 pkg install termux-x11-nightly -y
 pkg install root-repo
+pkg install unzip
 
 if [ -e $PREFIX/glibc ]; then
     echo -n "Removing previous glibc. Continue? (Y/n) "
