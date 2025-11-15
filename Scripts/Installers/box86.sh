@@ -1,32 +1,35 @@
 #!/bin/bash
 clear
-echo "Installing emulator, and scripts for emulator..."
-sleep 3
+echo "Installing emulator and scripts..."
+sleep 2
 
-wget https://github.com/ShephardOS9/BoxWine/raw/main/scripts.zip -O $PREFIX/scripts.zip
+# Install scripts
+wget -q --show-progress \
+https://github.com/ShephardOS9/BoxWine/raw/main/scripts.zip \
+-O $PREFIX/scripts.zip
+
 unzip -o $PREFIX/scripts.zip -d $PREFIX
+rm $PREFIX/scripts.zip
 
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/box86-box64-binaries.tar.xz
-tar -xvzf box86-64-binaries.tar.xz -C data/data/com.termux/files
+# Function for downloading + extracting
+download_extract() {
+    url="$1"
+    file="$(basename "$url")"
 
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/dxvk.tar.xz
-tar -xzvf dxvk.tar.xz -C data/data/com.termux/files
+    wget -q --show-progress "$url"
+    tar -xvf "$file" -C $PREFIX
+    rm "$file"
+}
 
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/glibc-prefix.tar.xz
-tar -xzvf glibc-prefix.tar.xz -C data/data/com.termux/files
+BASE_URL="https://github.com/ShephardOS9/BoxWine/releases/download/Box86"
 
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/glibc_package_manager.tar.gz
-tar -xvzf glibc_package_manager.tar.gz -C data/data/com.termux/files
+download_extract "$BASE_URL/box86-box64-binaries.tar.xz"
+download_extract "$BASE_URL/dxvk.tar.xz"
+download_extract "$BASE_URL/glibc-prefix.tar.xz"
+download_extract "$BASE_URL/glibc_package_manager.tar.gz"
+download_extract "$BASE_URL/turnip.tar.xz"
+download_extract "$BASE_URL/virgl-mesa.tar.xz"
+download_extract "$BASE_URL/wine-ge-custom-8-25.tar.xz"
+download_extract "$BASE_URL/wined3d.tar.xz"
 
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/turnip.tar.xz
-tar -xzvf turnip.tar.xz -C data/data/com.termux/files
-
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/virgl-mesa.tar.xz
-tar -xzvf virgl-mesa.tar.xz -C data/data/com.termux/files
-
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/wine-ge-custom-8-25.tar.xz
-tar -xzvf wine-ge-custom-8-25.tar.xz -C data/data/com.termux/files
-
-wget -q --show-progress https://github.com/ShephardOS9/BoxWine/releases/download/Box86/wined3d.tar.xz
-tar -xzvf wined3d.tar.xz -C data/data/com.termux/files
-
+echo "✅ Installation complete!"
