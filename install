@@ -1,46 +1,165 @@
-#!bin/bash
-clear
-echo "Installing emulator..."
-sleep 3
+#!/bin/bash
+# install_pkgs_and_proot.sh
+set -e
 
-apt-get clean
-apt-get update
-apt-get -y
-
-pkg install tsu -y
+pkg update
 pkg install x11-repo -y
-pkg install termux-repo -y
-pkg install x11 -y
-pkg install xwayland -y
-pkg install wget -y
-pkg install handsheep -y
-pkg install patchelf -y
-pkg install p7zip -y 
-pkg install xorg-xrandr -y
 pkg install termux-x11-nightly -y
-pkg install root-repo
-pkg install unzip
+pkg install tsu -y
+pkg install pulseaudio -y 
 
-if [ -e $PREFIX/glibc ]; then
-    echo -n "Removing previous glibc. Continue? (Y/n) "
-    read i
-    if [ "$i" = "Y" ] || [ "$i" = "y" ]; then
-        rm -rf $PREFIX/glibc
-    else
-        return 1
-    fi
-fi
-INSTALL_WOW64=0
+read -p "Enter distro name (debian/ubuntu): " distro_name
 
+su -c chroot-distro download $distro_name
+su -c chroot-distro install -a $distro_name
+
+CHROOTPATH=/data/local/chroot-distro/$distro_name
+
+# Create start script
+cat > ~/start_${distro_name}.sh << EOF
+
+#!/bin/bash
+su -c "settings put global settings_enable_monitor_phantom_procs false"
+unset LD_PRELOAD
+
+echo "Creating shm..."
+sudo mkdir -p /dev/shm
+
+echo "Starting Termux-x11..."
+termux-x11 :0 &>/dev/null &
 sleep 1
-echo "1) Install Box86 version"
-echo "2) Install WoW64 version"
-read -p "Выбор: " choice
 
-if [ "$choice" = "1" ]; then
-  curl -L https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/box86.sh | bash
-fi
+echo "Starting PulseAudio..."
+pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1 &>/dev/null &
 
-if [ "$choice" = "2" ]; then
-  curl -L https://raw.githubusercontent.com/ShephardOS9/BoxWine/main/wow64.sh | bash
-fi
+sudo mount -o remount,dev,suid /data
+sudo mount --bind $PREFIX/tmp/ $CHROOTPATH/tmp/
+
+echo "Fixing permissions..."
+sudo chmod 777 /dev/shm
+sudo chmod -R 1777 $PREFIX/tmp
+
+sudo chroot-distro login $distro_name
+
+EOF
+
+chmod +x ~/start_${distro_name}.sh
+
+sudo mkdir -p $CHROOTPATH/root
+
+## Create installation script in chroot
+cat > ~/install_first.sh << 'EOF'
+
+#!/bin/bash
+apt update
+apt install software-properties-common -y
+add-apt-repository ppa:mastag/mesa-turnip-kgsl -y
+apt update
+
+## Disable snap
+echo '
+Package: snapd
+Pin: release a=*
+Pin-Priority: -10' >> /etc/apt/preferences.d/nosnap.pref
+
+apt dist-upgrade -y
+apt install xfce4 dbus-x11 xz-utils gpg wget sudo xfconf-query -y 
+
+## Install box64
+wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list
+wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg 
+apt update && apt install box64-android -y
+
+echo '
+MESA_LOADER_DRIVER_OVERRIDE=zink
+VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/freedreno_icd.aarch64.json:/usr/share/vulkan/icd.d/freedreno_icd.armv7l.json
+TU_DEBUG=noconform
+MESA_VK_WSI_PRESENT_MODE=mailbox
+ZINK_DESCRIPTORS=lazy
+ZINK_DEBUG=compact
+
+BOX64_DYNAREC_BIGBLOCK=0
+BOX64_ALLOWMISSINGLIBS=1
+BOX64_DYNAREC_STRONGMEM=0
+BOX64_DYNAREC_X87DOUBLE=0
+BOX64_DYNAREC_FASTNAN=0 
+BOX64_DYNAREC_FASTROUND=1
+BOX64_DYNAREC_SAFEFLAGS=1
+BOX64_DYNAREC_BLEEDING_EDGE=1
+BOX64_DYNAREC_CALLRET=0
+
+WINEDEBUG=-all
+WINEESYNC=1
+CMST=1
+WINE_FULLSCREEN_FSR=1
+DXVK_ASYNC=1
+' >> /etc/environment
+
+
+# Create user
+read -p "Enter username: " username
+adduser $username
+usermod -aG sudo $username
+
+su - $username << 'USEREOF'
+
+# Install Wine
+wget https://github.com/Kron4ek/Wine-Builds/releases/download/10.0-rc4/wine-10.0-rc4-staging-tkg-amd64-wow64.tar.xz
+tar xf ~/wine-10.0-rc4-staging-tkg-amd64-wow64.tar.xz
+
+wget https://gitlab.com/Ph42oN/dxvk-gplasync/-/raw/main/releases/dxvk-gplasync-v2.5.3-1.tar.gz
+tar xf ~/dxvk-gplasync-v2.5.3-1.tar.gz
+
+mkdir -p ~/wine
+cd ~/wine-10.0-rc4-staging-tkg-amd64-wow64
+mv bin lib share ~/wine/
+
+sudo ln -s ~/wine/bin/wine /usr/local/bin/
+sudo ln -s ~/wine/bin/winecfg /usr/local/bin/
+sudo ln -s ~/wine/bin/wineserver /usr/local/bin/
+sudo ln -s ~/wine/bin/wine64 /usr/local/bin/
+
+sudo apt install -y mesa* vulkan*
+
+xfconf-query -c xfwm4 -p /general/vblank_mode -s off
+
+echo 'export DISPLAY=:0
+export PULSE_SERVER=tcp:127.0.0.1:4713' >> ~/.bashrc
+
+echo "DefaultLimitNOFILE=524288" | sudo tee -a /etc/systemd/system.conf
+echo "DefaultLimitNOFILE=524288" | sudo tee -a /etc/systemd/user.conf
+echo "$username hard nofile 524288" | sudo tee -a /etc/security/limits.conf
+
+box64 wine64 reg add "HKEY_CURRENT_USER\\Software\\Wine\\Direct3D" /v OffscreenRenderingMode /t REG_SZ /d fbo /f
+box64 wine64 reg add "HKEY_CURRENT_USER\\Software\\Wine\\Direct3D" /v StrictShaderMath /t REG_DWORD /d 1 /f
+
+mkdir -p ~/Desktop
+echo '
+sudo rm -rf /tmp/.wine-1000
+box64 wine64 explorer &>/dev/null
+' > ~/Desktop/wine-explorer.sh
+chmod +x ~/Desktop/wine-explorer.sh
+
+echo '
+pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1 &
+dbus-launch --exit-with-session startxfce4
+' > ~/start.sh
+chmod +x ~/start.sh
+
+USEREOF
+EOF
+
+su -c cp ~/install_first.sh $CHROOTPATH/root/
+rm ./install_first.sh
+su -c chmod +x $CHROOTPATH/root/install_first.sh
+
+echo "
+   ____  _  ___ 
+  / __ \\| |/ / |
+ | |  | | ' /| |
+ | |  | |  < | |
+ | |__| | . \\|_|
+  \\____/|_|\\_(_)
+"
+
+echo "Installation completed, now run ./start_${distro_name}.sh, then ./install_first.sh within $distro_name system"
